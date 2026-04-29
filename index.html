@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Change Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar glass-panel">
+            <h1 class="title">Coin Change<br><span class="highlight">Visualizer</span></h1>
+            
+            <div class="input-group">
+                <label for="target-amount">Target Amount</label>
+                <input type="number" id="target-amount" value="18" min="1">
+            </div>
+
+            <div class="input-group">
+                <label for="denominations">Denominations</label>
+                <input type="text" id="denominations" value="1, 2, 5, 10" placeholder="e.g., 1, 5, 10">
+                <small>Comma separated values</small>
+            </div>
+
+            <div class="input-group">
+                <label for="speed-slider">Animation Speed</label>
+                <div class="slider-container">
+                    <span>Slow</span>
+                    <input type="range" id="speed-slider" min="1" max="10" value="5">
+                    <span>Fast</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <div class="button-wrapper tooltip-container">
+                    <button id="btn-greedy" class="btn btn-primary">Run Greedy</button>
+                    <span class="tooltip">Time Complexity: O(N log N)<br>May not find optimal solution.</span>
+                </div>
+                <div class="button-wrapper tooltip-container">
+                    <button id="btn-dp" class="btn btn-secondary">Run DP</button>
+                    <span class="tooltip">Time Complexity: O(N × M)<br>Guaranteed optimal solution.</span>
+                </div>
+            </div>
+
+            <div class="results glass-panel-inner">
+                <h3>Results</h3>
+                <div class="result-row">
+                    <span>Status:</span>
+                    <span id="status-label" class="badge">Waiting...</span>
+                </div>
+                <div class="result-row">
+                    <span>Total Coins:</span>
+                    <span id="total-coins">-</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="workspace">
+            <div class="visualization-header">
+                <h2 id="viz-title">Visualization Area</h2>
+                <button id="btn-reset" class="icon-btn" title="Reset"><i class="fas fa-redo"></i></button>
+            </div>
+            
+            <div id="greedy-viz" class="viz-container hidden">
+                <div class="greedy-state">
+                    <div class="current-target">Target Remaining: <span id="greedy-target-val">0</span></div>
+                </div>
+                <div class="greedy-coins-area" id="greedy-coins-area">
+                    <!-- Coins will be animated here -->
+                </div>
+            </div>
+
+            <div id="dp-viz" class="viz-container hidden">
+                <div class="dp-scroll-wrapper">
+                    <div id="dp-grid" class="dp-grid">
+                        <!-- DP Grid will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
